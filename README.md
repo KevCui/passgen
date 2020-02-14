@@ -80,6 +80,6 @@ wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 
 - Change `_SEPERATOR` variable in the script to put any special character/symbol as you wish.
 
-- Remember the `string` and share the `file`
+- Remember the `string` and share the `file`, this script is literally a password manager.
 
 - Be creative to add your own rules or hash methods in the script, to make your unique password generator/manager
