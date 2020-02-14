@@ -55,10 +55,10 @@ export PG_FILE="<path_to_file>"
 ```
 ~$ ./pg.sh -c
 ```
-- Generate a password with only hex chars:
+- Generate a password with only hex chars, 25 chars:
 
 ```
-~$ ./pg.sh -x
+~$ ./pg.sh -x 25
 ```
 
 - Show generated password as output in terminal:
@@ -73,3 +73,13 @@ wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 ```
 ~$ bats test/pg.bats
 ```
+
+## Advanced usage
+
+- Recommend to set different `PG_FILE` for generating different passwords on different sites.
+
+- Change `_SEPERATOR` variable in the script to put any special character/symbol as you wish.
+
+- Remember the `string` and share the `file`
+
+- Be creative to add your own rules or hash methods in the script, to make your unique password generator/manager
