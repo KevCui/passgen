@@ -58,32 +58,32 @@ export PG_FILE="<path_to_file>"
 
 ### Example
 
-### Generate a password with 20 chars:
+#### Generate a password with 20 chars
 
 ```bash
 ~$ ./pg.sh 20
 ```
 
-### Generate a password with 1 char uppercase:
+#### Generate a password with 1 char uppercase
 
 ```bash
 ~$ ./pg.sh -c
 ```
 
-### Generate a password with only hex chars, 25 chars:
+#### Generate a password with only hex chars, 25 chars
 
 ```bash
 ~$ ./pg.sh -x 25
 ```
 
-### Show generated password as output in terminal:
+#### Show generated password as output in terminal
 
 ```bash
 ~$ ./pg.sh -s
 wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 ```
 
-### Generate a 4-digit PIN code:
+#### Generate a 4-digit PIN code
 
 ```bash
 ~$ ./pg.sh -s -p
