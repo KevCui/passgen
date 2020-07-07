@@ -3,7 +3,7 @@
 # Generate password from a string and a file
 #
 #/ Usage:
-#/   ./pg.sh [-s|-c|-x] [<length>]
+#/   ./pg.sh [-s|-c|-x|-p] [<length>]
 #/
 #/ Options:
 #/   length          Optional, must be an integer inside range (0, 105]
@@ -13,6 +13,7 @@
 #/   -c              Optional, make first letter uppercase
 #/   -x              Optional, output hex chars
 #/                   Default base64 chars
+#/   -p              Optional, generate PIN with only numbers
 #/   -h | --help     Show usage message
 
 set -e
@@ -24,7 +25,6 @@ usage() {
 
 set_var() {
     [[ -z "${PG_FILE:-}" ]] && PG_FILE="$0"
-    [[ -z ${_LENGTH:-} ]] &&_LENGTH=29
     _SEPERATOR="$"
     _SALT=$(sha512sum "$PG_FILE" | cut -d' ' -f 1)
 }
@@ -40,6 +40,11 @@ hash() {
             | sha512sum \
             | sed -E 's,.....,&'"$_SEPERATOR"',g' \
             | cut -c-"$2")
+    elif [[ "${_PIN_OUT:-}" == true ]]; then
+        h=$(echo -n "$1" \
+            | sha512sum \
+            | sed -E 's/[^[:digit:]]//g' \
+            | cut -c-"$2" )
     else
         h=$(echo -n "$1" \
             | sha512sum \
@@ -90,7 +95,7 @@ get_str_index() {
 set_args() {
     expr "$*" : ".*--help" > /dev/null && usage
     _UPPERCASE=false
-    while getopts ":hscx" opt; do
+    while getopts ":hscxp" opt; do
         case $opt in
             s)
                 _SHOW_IT=true
@@ -100,6 +105,11 @@ set_args() {
                 ;;
             x)
                 _HEX_OUT=true
+                ;;
+            p)
+                _PIN_OUT=true
+                _HEX_OUT=false
+                _UPPERCASE=false
                 ;;
             h)
                 usage
@@ -111,7 +121,14 @@ set_args() {
         esac
     done
     shift $((OPTIND-1))
-    _LENGTH="$@"
+    _LENGTH="$*"
+    if [[ -z "${_LENGTH:-}" ]]; then
+        if [[ -z "${_PIN_OUT:-}" ]]; then
+            _LENGTH=29
+        else
+            _LENGTH=4
+        fi
+    fi
 }
 
 get_platform() {

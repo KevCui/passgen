@@ -1,7 +1,20 @@
-passgen
-=======
+# passgen
 
-A password generator creates password based on a string and a file.
+> A password generator creates password based on a string and a file.
+
+## Table of Contents
+
+- [passgen](#passgen)
+  - [How it works](#how-it-works)
+  - [Usage](#usage)
+    - [Example](#example)
+    - [Generate a password with 20 chars:](#generate-a-password-with-20-chars)
+    - [Generate a password with 1 char uppercase:](#generate-a-password-with-1-char-uppercase)
+    - [Generate a password with only hex chars, 25 chars:](#generate-a-password-with-only-hex-chars-25-chars)
+    - [Show generated password as output in terminal:](#show-generated-password-as-output-in-terminal)
+    - [Generate a 4-digit PIN code:](#generate-a-4-digit-pin-code)
+  - [Run tests](#run-tests)
+  - [Advanced usage](#advanced-usage)
 
 ## How it works
 
@@ -9,11 +22,11 @@ This script requires a string and a file as input. The script will get SHA check
 
 If you want to generate same password every time using same string, it's important to NOT change the file content (SHA512 checksum).
 
-## How to use
+## Usage
 
 ```
 Usage:
-  ./pg.sh [-s|-c|-x] [<length>]
+  ./pg.sh [-s|-c|-x|-p] [<length>]
 
 Options:
   length          Optional, must be an integer inside range (0, 105]
@@ -23,18 +36,19 @@ Options:
   -c              Optional, make first letter uppercase
   -x              Optional, output hex chars
                   Default base64 chars
+  -p              Optional, generate PIN with only numbers
   -h | --help     Show usage message
 ```
 
 1. Pick any file as base, can be a doc, a binary, an SSH key... ideally any file which is read-only. Set global variable `PG_FILE` in terminal:
 
-```
+```bash
 export PG_FILE="<path_to_file>"
 ```
 
 2. Run script to generate password
 
-```
+```bash
 ~$ ./pg.sh
 ```
 
@@ -42,35 +56,43 @@ export PG_FILE="<path_to_file>"
 
 4. Ctrl-v/paste password to where you want
 
-### Example:
+### Example
 
-- Generate a password with 20 chars:
+### Generate a password with 20 chars:
 
-```
+```bash
 ~$ ./pg.sh 20
 ```
 
-- Generate a password with 1 char uppercase:
+### Generate a password with 1 char uppercase:
 
-```
+```bash
 ~$ ./pg.sh -c
 ```
-- Generate a password with only hex chars, 25 chars:
 
-```
+### Generate a password with only hex chars, 25 chars:
+
+```bash
 ~$ ./pg.sh -x 25
 ```
 
-- Show generated password as output in terminal:
+### Show generated password as output in terminal:
 
-```
+```bash
 ~$ ./pg.sh -s
 wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 ```
 
+### Generate a 4-digit PIN code:
+
+```bash
+~$ ./pg.sh -s -p
+5875
+```
+
 ## Run tests
 
-```
+```bash
 ~$ bats test/pg.bats
 ```
 
