@@ -1,4 +1,4 @@
-# passgen
+# passgen ![CI](https://github.com/KevCui/passgen/workflows/CI/badge.svg) 
 
 > A password generator creates password based on a string and a file.
 
