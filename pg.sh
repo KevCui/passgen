@@ -65,17 +65,17 @@ hash() {
             i=$(get_str_index "$h" "$l")
 
             if [[ $i -eq 0 ]]; then
-                echo "$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')${h:i+1}"
+                echo -n "$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')${h:i+1}"
             elif [[ $((i+1)) -eq ${#h} ]]; then
-                echo "${h:0:i}$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')"
+                echo -n "${h:0:i}$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')"
             else
-                echo "${h:0:i}$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')${h:i+1}"
+                echo -n "${h:0:i}$(echo "${h:i:1}" | tr '[:lower:]' '[:upper:]')${h:i+1}"
             fi
         else
-            echo "A${h:1}"
+            echo -n "A${h:1}"
         fi
     else
-        echo "$h"
+        echo -n "$h"
     fi
 }
 
