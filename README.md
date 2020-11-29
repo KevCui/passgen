@@ -49,7 +49,7 @@ export PG_FILE="<path_to_file>"
 2. Run script to generate password
 
 ```bash
-~$ ./pg.sh
+$ ./pg.sh
 ```
 
 3. See prompt "Enter a string", enter any string. In order to get different passwords, it's better to pick something different for each site/app, like domain name of website, app name, user name...
@@ -61,39 +61,39 @@ export PG_FILE="<path_to_file>"
 #### Generate a password with 20 chars
 
 ```bash
-~$ ./pg.sh 20
+$ ./pg.sh 20
 ```
 
 #### Generate a password with 1 char uppercase
 
 ```bash
-~$ ./pg.sh -c
+$ ./pg.sh -c
 ```
 
 #### Generate a password with only hex chars, 25 chars
 
 ```bash
-~$ ./pg.sh -x 25
+$ ./pg.sh -x 25
 ```
 
 #### Show generated password as output in terminal
 
 ```bash
-~$ ./pg.sh -s
+$ ./pg.sh -s
 wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 ```
 
 #### Generate a 4-digit PIN code
 
 ```bash
-~$ ./pg.sh -s -p
+$ ./pg.sh -s -p
 5875
 ```
 
 ## Run tests
 
 ```bash
-~$ bats test/pg.bats
+$ bats test/pg.bats
 ```
 
 ## Advanced usage
@@ -105,3 +105,7 @@ wepk0$TOseO$Gzpoj$I9a0N$EYrLv
 - Remember the `string` and share the `file`, this script is literally a password manager.
 
 - Be creative to add your own rules or hash methods in the script, to make your unique password generator/manager
+
+---
+
+<a href="https://www.buymeacoffee.com/kevcui" target="_blank"><img src="https://cdn.buymeacoffee.com/buttons/v2/default-orange.png" alt="Buy Me A Coffee" height="60px" width="217px"></a>
